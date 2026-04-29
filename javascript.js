@@ -3,6 +3,7 @@ const pHand = [];
 const dHand = [];
 let dHandDis = document.querySelector("#dealer .cards")
 let pHandDis = document.querySelector("#player .cards")
+let controls = document.querySelector("#cConc");
 function generateDeck() {
     let suitList = "CHDS"
     let numList = "A23456789TJQK"
@@ -73,5 +74,28 @@ function deleteAllChildren(element) {
         element.firstChild.remove();
     }
 }
+
+controls.addEventListener("click", clickHandler)
+function clickHandler(event) {
+    event.preventDefault();
+    switch (event.target.id) {
+        case "double":
+            double();
+            break;
+        case "hit":
+            hit();
+            break;
+        case "stand":
+            stand();
+            break;
+        case "split":
+            split();
+            break;
+        case "bet":
+            bet();
+    }
+}
+
+
 initialLoad();
 generateDeck();

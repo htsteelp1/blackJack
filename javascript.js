@@ -96,7 +96,7 @@ function clickHandler(event) {
         // case "split":
         //     split();
         //     break;
-        case "bet":
+        case "abet":
             bet();
     }
 }
@@ -110,7 +110,7 @@ function stand() {
     endRound();
 }
 function double() {
-    dealCard();
+    dealCard("player");
     stand();
 }
 // function split() {
@@ -145,7 +145,7 @@ function endRound() {
         dealCard("dealer");
     }
     pControls.remove();
-    checkWin();
+    checkWin(blackJack);
     displayBalance();
     amountBet = 0;
     displayBet();
@@ -157,8 +157,8 @@ function startRound() {
     generateDeck();
     deleteAllChildren(dHandDis);
     deleteAllChildren(pHandDis);
-    clearArray(pHandDis);
-    clearArray(dHandDis);
+    clearArray(pHand);
+    clearArray(dHand);
     dealCard("player");
     dealCard("player");
     dealCard("Dealer");
@@ -181,7 +181,7 @@ function checkWin(blackJack) {
     let pTotal = totalAces(pHand);
     if (pTotal > 21) {
     }
-    if (dTotal > 21) {
+    else if (dTotal > 21) {
         balanceRef.value += amountBet;
         if (blackJack) balanceRef.value += amountBet*0.5;
     }

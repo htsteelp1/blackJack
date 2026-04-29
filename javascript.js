@@ -131,7 +131,7 @@ function countAces(hand) {
     );
 }
 function subtractAces(a, total) {
-    if (a>1 && total>21) return subtractAces(a-1, total-10);
+    if (a>0 && total>21) return subtractAces(a-1, total-10);
     else return total;
 }
 function totalHand(hand) {

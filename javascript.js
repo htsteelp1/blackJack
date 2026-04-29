@@ -34,6 +34,7 @@ function initialLoad() {
     balanceRef.value = balanceRef.value>0 ? balanceRef.value : 100
     displayBalance();
     bControls.remove();
+    betRound();
 }
 
 function dealCard(person) {
@@ -141,8 +142,12 @@ function endRound() {
 
 }
 function startRound() {
-bControls.remove();
-generateDeck();
+    bControls.remove();
+    generateDeck();
+    deleteAllChildren(dHandDis);
+    deleteAllChildren(pHandDis);
+    clearArray(pHandDis);
+    clearArray(dHandDis);
 }
 function betRound() {
     controls.appendChild(bControls);
@@ -170,6 +175,11 @@ function checkWin(blackJack) {
     else if (pTotal > dTotal) {
         balanceRef.value += 2*amountBet;
         if (blackJack === true) balanceRef.value += Math.ceil(amountBet*0.5);
+    }
+}
+function clearArray(array) {
+    for (let i = 0; i<array.length; i++) {
+        array.pop();
     }
 }
 initialLoad();

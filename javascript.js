@@ -142,6 +142,7 @@ function endRound() {
 }
 function startRound() {
 bControls.remove();
+generateDeck();
 }
 function betRound() {
     controls.appendChild(bControls);
@@ -156,12 +157,12 @@ function bet() {
 function displayBet() {
     betDisplay.innerText = amountBet;
 }
-function checkWin() {
+function checkWin(blackJack) {
     let dTotal = totalAces(dHand);
     let pTotal = totalAces(pHand);
     if (dTotal === pTotal) {
         balanceRef.value += amountBet();
-        if (blackJack === true) balanceRef.value += Math.ceil(amountBet*2.5)
+        if (blackJack === true && dHand.length !== 2) balanceRef.value += Math.ceil(amountBet*1.5)
     }
     else if (dTotal > pTotal) {
     //     Insurance logic will go here
@@ -172,4 +173,4 @@ function checkWin() {
     }
 }
 initialLoad();
-generateDeck();
+

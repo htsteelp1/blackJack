@@ -15,12 +15,14 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    justify-content: center;
 }
 
 .cards {
     display: flex;
     flex: auto;
     gap: 10px;
+    justify-content: center;
 }
 .cards img {
     height: 140px;
@@ -42,7 +44,29 @@ body {
     display: flex;
     justify-content: space-between;
     gap: 5px;
+    height: 20px;
 }
 #bettedArea {
     color: white;
+}
+form {
+    display: flex;
+    color: white;
+    flex: 1;
+    gap: 5px;
+}
+#player {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+#cConc {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+}
+h2 {
+    margin-bottom: 5px;
+    margin-top: 5px;
 }

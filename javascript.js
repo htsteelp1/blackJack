@@ -111,6 +111,25 @@ function double() {
 function split() {
 
 }
+function totalLogic() {
+
+}
+function cardToNum(card) {
+    let num = 2+"23456789TJQKA".indexOf(card.at(0));
+    return num > 10 ? 10 + (num>13) : num;
+}
+function countAces(hand) {
+    return hand.reduce((sum, str) =>
+        sum + str.split("A").length - 1, 0
+    );
+}
+function subtractAces(a, total) {
+    if (a>1 && total>21) return subtractAces(a-1, total-10);
+    else return total;
+}
+function totalHand(hand) {
+    return hand.reduce((total, value) => cardToNum(value)+total, 0);
+}
 
 initialLoad();
 generateDeck();

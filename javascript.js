@@ -1,5 +1,9 @@
-let deck = []
-function deckGenerator() {
+const deck = [];
+const pHand = [];
+const dHand = [];
+let dHandDis = document.querySelector("#dealer .cards")
+let pHandDis = document.querySelector("#player .cards")
+function generateDeck() {
     let suitList = "CHDS"
     let numList = "A23456789TJQK"
     for (let z = 0; z < 6; z++) {
@@ -26,12 +30,41 @@ function initialLoad() {
     displayBalance();
 }
 
-function dealCard() {
-
+function dealCard(person) {
+    let card = deck.pop();
+    let cardImage = document.createElement("img");
+    cardImage.src = cardUrl(card);
+    if (person === "player") {
+        pHand.push(card);
+        pHandDis.appendChild(cardImage);
+    }
+    else {
+        dHand.push(card);
+        dHandDis.appendChild(cardImage);
+    }
 }
-
+function cardUrl(card) {
+    let cardUrl = "./playing-cards-master/";
+    switch (card.at(1)) {
+        case "H":
+            cardUrl += "hearts_";
+            break;
+        case "C":
+            cardUrl += "clubs_";
+            break;
+        case "D":
+            cardUrl += "diamonds_";
+            break;
+        case "S":
+            cardUrl += "spades_";
+            break;
+    }
+    cardUrl += card.at(0) + ".png";
+    return cardUrl;
+}
 function displayBalance() {
     balanceDis.innerText = balanceRef.value;
 }
 
 initialLoad();
+generateDeck();

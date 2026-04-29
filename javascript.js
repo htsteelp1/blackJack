@@ -107,7 +107,6 @@ function hit() {
 }
 function stand() {
     totalLogic();
-    checkWin();
     endRound();
 }
 function double() {
@@ -156,6 +155,21 @@ function bet() {
 }
 function displayBet() {
     betDisplay.innerText = amountBet;
+}
+function checkWin() {
+    let dTotal = totalAces(dHand);
+    let pTotal = totalAces(pHand);
+    if (dTotal === pTotal) {
+        balanceRef.value += amountBet();
+        if (blackJack === true) balanceRef.value += Math.ceil(amountBet*2.5)
+    }
+    else if (dTotal > pTotal) {
+    //     Insurance logic will go here
+    }
+    else if (pTotal > dTotal) {
+        balanceRef.value += 2*amountBet;
+        if (blackJace === true) balanceRef.value += Math.ceil(amountBet*0.5);
+    }
 }
 initialLoad();
 generateDeck();

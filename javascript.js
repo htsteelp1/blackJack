@@ -9,6 +9,7 @@ let pControls = document.querySelector(".pControls");
 let betInput = document.querySelector("#Bet");
 let amountBet = 0;
 let betDisplay = document.querySelector("#amountBet");
+let blackJack = false;
 function generateDeck() {
     let suitList = "CHDS"
     let numList = "A23456789TJQK"
@@ -116,6 +117,9 @@ function double() {
 //
 // }
 function totalLogic() {
+    if (totalAces(pHand)>21) endRound();
+    else if (totalHand(pHand)===21 && pHand.length === 2) blackJack = true;
+    else if (totalAces(pHand)===21) endRound();
 }
 function cardToNum(card) {
     let num = 2+"23456789TJQKA".indexOf(card.at(0));

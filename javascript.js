@@ -4,6 +4,10 @@ const dHand = [];
 let dHandDis = document.querySelector("#dealer .cards")
 let pHandDis = document.querySelector("#player .cards")
 let controls = document.querySelector("#cConc");
+let bControls = document.querySelector(".bControls")
+let betInput = document.querySelector("#Bet");
+let amountBet = 0;
+let betDisplay = document.querySelector("#amountBet");
 function generateDeck() {
     let suitList = "CHDS"
     let numList = "A23456789TJQK"
@@ -18,7 +22,7 @@ function generateDeck() {
 }
 let balanceRef = {
     get value() {
-        return localStorage.getItem("balance");
+        return parseInt(localStorage.getItem("balance"));
     },
     set value(v) {
         localStorage.setItem("balance", v);
@@ -29,6 +33,7 @@ let balanceDis = document.querySelector("#balance");
 function initialLoad() {
     balanceRef.value = balanceRef.value>0 ? balanceRef.value : 100
     displayBalance();
+    bControls.remove();
 }
 
 function dealCard(person) {
@@ -88,9 +93,9 @@ function clickHandler(event) {
         case "stand":
             stand();
             break;
-        case "split":
-            split();
-            break;
+        // case "split":
+        //     split();
+        //     break;
         case "bet":
             bet();
     }
@@ -103,16 +108,16 @@ function hit() {
 function stand() {
     totalLogic();
     checkWin();
+    endRound();
 }
 function double() {
     dealCard();
     stand();
 }
-function split() {
-
-}
+// function split() {
+//
+// }
 function totalLogic() {
-
 }
 function cardToNum(card) {
     let num = 2+"23456789TJQKA".indexOf(card.at(0));
@@ -132,6 +137,25 @@ function totalHand(hand) {
 }
 function totalAces(hand) {
     return subtractAces(countAces(hand), totalHand(hand));
+}
+function endRound() {
+
+}
+function startRound() {
+bControls.remove();
+}
+function betRound() {
+    controls.appendChild(bControls);
+}
+function bet() {
+    amountBet = Math.min(balanceRef.value, parseInt(betInput.value))
+    balanceRef.value = balanceRef.value - amountBet;
+    displayBalance();
+    displayBet();
+    startRound();
+}
+function displayBet() {
+    betDisplay.innerText = amountBet;
 }
 initialLoad();
 generateDeck();

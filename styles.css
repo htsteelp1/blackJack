@@ -1,5 +1,4 @@
 .title {
-    font-family: Arial, sans-serif;
     text-align: center;
     color: white;
 }
@@ -9,6 +8,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: Arial, sans-serif;
 
 }
 #gameArea {
@@ -42,4 +42,7 @@ body {
     display: flex;
     justify-content: space-between;
     gap: 5px;
+}
+#bettedArea {
+    color: white;
 }

@@ -130,6 +130,8 @@ function subtractAces(a, total) {
 function totalHand(hand) {
     return hand.reduce((total, value) => cardToNum(value)+total, 0);
 }
-
+function totalAces(hand) {
+    return subtractAces(countAces(hand), totalHand(hand));
+}
 initialLoad();
 generateDeck();

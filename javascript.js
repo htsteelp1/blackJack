@@ -1,9 +1,19 @@
-let balance = localStorage.getItem("balance") ?? 100
+let balanceRef = {
+    get value() {
+        return localStorage.getItem("balance");
+    },
+    set value(v) {
+        localStorage.setItem("balance", v);
+    }
+}
 let balanceDis = document.querySelector("#balance");
 
 function initialLoad() {
-    balance = balance>0 ? balance : 100
+    balanceRef.value = balanceRef.vaulue>0 ? balanceRef.value : 100
     localStorage.setItem("balance", balance);
-    balanceDis.innerText = balance;
+    displayBalance();
+}
+function displayBalance() {
+    balanceDis.innerText = balanceRef.value;
 }
 initialLoad();

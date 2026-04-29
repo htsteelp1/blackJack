@@ -5,6 +5,7 @@ let dHandDis = document.querySelector("#dealer .cards")
 let pHandDis = document.querySelector("#player .cards")
 let controls = document.querySelector("#cConc");
 let bControls = document.querySelector(".bControls")
+let pControls = document.querySelector(".pControls");
 let betInput = document.querySelector("#Bet");
 let amountBet = 0;
 let betDisplay = document.querySelector("#amountBet");
@@ -30,12 +31,9 @@ let balanceRef = {
 }
 let balanceDis = document.querySelector("#balance");
 
-function initialLoad() {
-    balanceRef.value = balanceRef.value>0 ? balanceRef.value : 100
-    displayBalance();
-    bControls.remove();
-    betRound();
-}
+
+
+
 
 function dealCard(person) {
     let card = deck.pop();
@@ -139,10 +137,11 @@ function totalAces(hand) {
     return subtractAces(countAces(hand), totalHand(hand));
 }
 function endRound() {
-
+pControls.remove();
 }
 function startRound() {
     bControls.remove();
+    controls.appendChild(pControls);
     generateDeck();
     deleteAllChildren(dHandDis);
     deleteAllChildren(pHandDis);
@@ -185,5 +184,10 @@ function clearArray(array) {
         array.pop();
     }
 }
-initialLoad();
+balanceRef.value = balanceRef.value>0 ? balanceRef.value : 100
+displayBalance();
+bControls.remove();
+pControls.remove();
+betRound();
+
 

@@ -142,6 +142,11 @@ function totalAces(hand) {
 }
 function endRound() {
 pControls.remove();
+checkWin();
+displayBalance();
+amountBet = 0;
+displayBet();
+betRound();
 }
 function startRound() {
     bControls.remove();

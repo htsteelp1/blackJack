@@ -66,5 +66,12 @@ function displayBalance() {
     balanceDis.innerText = balanceRef.value;
 }
 
+function deleteAllChildren(element) {
+    const childList = element.childNodes;
+    const childLength = childList.length;
+    for (let i = 0; i<childLength; i++) {
+        element.firstChild.remove();
+    }
+}
 initialLoad();
 generateDeck();

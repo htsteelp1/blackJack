@@ -4,7 +4,6 @@
     color: white;
 }
 
-
 body {
     background-color: #293143;
     display: flex;
@@ -16,15 +15,12 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-
 }
-
 
 .cards {
     display: flex;
     flex: auto;
     gap: 10px;
-    justify-content: center;
 }
 .cards img {
     height: 140px;
@@ -35,6 +31,12 @@ body {
     border-style: none;
     flex: 1 1 0;
     color: #f8f8f8;
+}
+.pControls button:hover {
+    filter: brightness(80%);
+}
+.pControls button:active {
+    filter: brightness(60%);
 }
 .pControls{
     display: flex;

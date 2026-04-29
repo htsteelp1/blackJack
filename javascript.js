@@ -148,6 +148,9 @@ function startRound() {
     deleteAllChildren(pHandDis);
     clearArray(pHandDis);
     clearArray(dHandDis);
+    dealCard("player");
+    dealCard("player");
+    dealCard("Dealer");
 }
 function betRound() {
     controls.appendChild(bControls);

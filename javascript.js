@@ -141,12 +141,15 @@ function totalAces(hand) {
     return subtractAces(countAces(hand), totalHand(hand));
 }
 function endRound() {
-pControls.remove();
-checkWin();
-displayBalance();
-amountBet = 0;
-displayBet();
-betRound();
+    while (totalAces(dHand) < 17) {
+        dealCard("dealer");
+    }
+    pControls.remove();
+    checkWin();
+    displayBalance();
+    amountBet = 0;
+    displayBet();
+    betRound();
 }
 function startRound() {
     bControls.remove();
@@ -176,8 +179,14 @@ function displayBet() {
 function checkWin(blackJack) {
     let dTotal = totalAces(dHand);
     let pTotal = totalAces(pHand);
-    if (dTotal === pTotal) {
-        balanceRef.value += amountBet();
+    if (pTotal > 21) {
+    }
+    if (dTotal > 21) {
+        balanceRef.value += amountBet;
+        if (blackJack) balanceRef.value += amountBet*0.5;
+    }
+    else if (dTotal === pTotal) {
+        balanceRef.value += amountBet;
         if (blackJack === true && dHand.length !== 2) balanceRef.value += Math.ceil(amountBet*1.5)
     }
     else if (dTotal > pTotal) {

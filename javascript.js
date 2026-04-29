@@ -96,6 +96,21 @@ function clickHandler(event) {
     }
 }
 
+function hit() {
+    dealCard("player");
+    totalLogic();
+}
+function stand() {
+    totalLogic();
+    checkWin();
+}
+function double() {
+    dealCard();
+    stand();
+}
+function split() {
+
+}
 
 initialLoad();
 generateDeck();

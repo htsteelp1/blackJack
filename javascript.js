@@ -30,11 +30,9 @@ let balanceRef = {
         localStorage.setItem("balance", v);
     }
 }
+let bBefore = balanceRef.value;
+let won = document.querySelector("#amountWon")
 let balanceDis = document.querySelector("#balance");
-
-
-
-
 
 function dealCard(person) {
     let card = deck.pop();
@@ -150,6 +148,8 @@ function endRound() {
     amountBet = 0;
     displayBet();
     betRound();
+    blackJack = false;
+    won.innerText = balanceRef.value - bBefore;
 }
 function startRound() {
     bControls.remove();
@@ -167,6 +167,7 @@ function betRound() {
     controls.appendChild(bControls);
 }
 function bet() {
+    bBefore = balanceRef.value;
     amountBet = Math.min(balanceRef.value, parseInt(betInput.value))
     balanceRef.value = balanceRef.value - amountBet;
     displayBalance();

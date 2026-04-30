@@ -200,6 +200,7 @@ function checkWin(blackJack) {
 }
 function clearArray(array) {
     array.length = 0;
+    array.length = 0;
 }
 balanceRef.value = balanceRef.value>0 ? balanceRef.value : 100
 displayBalance();

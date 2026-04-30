@@ -183,7 +183,7 @@ function checkWin(blackJack) {
     if (pTotal > 21) {
     }
     else if (dTotal > 21) {
-        balanceRef.value += amountBet;
+        balanceRef.value += 2*amountBet;
         if (blackJack) balanceRef.value += amountBet*0.5;
     }
     else if (dTotal === pTotal) {

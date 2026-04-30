@@ -199,9 +199,7 @@ function checkWin(blackJack) {
     }
 }
 function clearArray(array) {
-    for (let i = 0; i<array.length; i++) {
-        array.pop();
-    }
+    array.length = 0;
 }
 balanceRef.value = balanceRef.value>0 ? balanceRef.value : 100
 displayBalance();

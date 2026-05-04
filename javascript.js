@@ -109,6 +109,8 @@ function stand() {
 }
 function double() {
     dealCard("player");
+    balanceRef.value = balanceRef.value - Math.min(balanceRef.value, amountBet);
+    amountBet += Math.min(balanceRef.value, amountBet);
     stand();
 }
 // function split() {

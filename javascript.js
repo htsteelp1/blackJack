@@ -170,7 +170,7 @@ function betRound() {
 }
 function bet() {
     bBefore = balanceRef.value;
-    amountBet = Math.min(balanceRef.value, parseInt(betInput.value))
+    amountBet = Math.max(Math.min(balanceRef.value, parseInt(betInput.value)), 0);
     balanceRef.value = balanceRef.value - amountBet;
     displayBalance();
     displayBet();

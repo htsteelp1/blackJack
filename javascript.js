@@ -1,6 +1,7 @@
 const deck = [];
 const pHand = [];
 const dHand = [];
+const pHands = [];
 let dHandDis = document.querySelector("#dealer .cards")
 let pHandDis = document.querySelector("#player .cards")
 let controls = document.querySelector("#cConc");
@@ -10,6 +11,17 @@ let betInput = document.querySelector("#Bet");
 let amountBet = 0;
 let betDisplay = document.querySelector("#amountBet");
 let blackJack = false;
+
+class Hand {
+    hand = [];
+    constructor() {
+        pHands.push(this);
+    }
+    hit() {
+        this.hand.push(deck.pop());
+    }
+}
+
 function generateDeck() {
     let suitList = "CHDS"
     let numList = "A23456789TJQK"

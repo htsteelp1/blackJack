@@ -168,7 +168,6 @@ function endRound() {
 function startRound() {
     bControls.remove();
     controls.appendChild(pControls);
-    generateDeck();
     deleteAllChildren(dHandDis);
     deleteAllChildren(pHandDis);
     clearArray(pHand);
@@ -220,6 +219,7 @@ balanceRef.value = balanceRef.value>0 ? balanceRef.value : 100
 displayBalance();
 bControls.remove();
 pControls.remove();
+generateDeck();
 betRound();
 
 

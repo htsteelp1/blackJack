@@ -1,5 +1,4 @@
 const deck = [];
-const pHand = [];
 const dHand = [];
 const pHands = [];
 let dHandDis = document.querySelector("#dealer .cards")
@@ -11,14 +10,21 @@ let betInput = document.querySelector("#Bet");
 let amountBet = 0;
 let betDisplay = document.querySelector("#amountBet");
 let blackJack = false;
+let handID = 0;
 
 class Hand {
     hand = [];
+    display = document.createElement("div");
     constructor() {
         pHands.push(this);
+        this.display.classList.add("cards");
     }
-    hit() {
-        this.hand.push(deck.pop());
+    dealCard(card, cardImage) {
+        this.hand.push(card);
+        this.display.appendChild(cardImage);
+    }
+    displayHand() {
+        pHandDis.appendChild(this.display);
     }
 }
 
@@ -51,8 +57,8 @@ function dealCard(person) {
     let cardImage = document.createElement("img");
     cardImage.src = cardUrl(card);
     if (person === "player") {
-        pHand.push(card);
-        pHandDis.appendChild(cardImage);
+        pHands[handID].dealCard(card, cardImage);
+        pHands[handID].displayHand();
     }
     else {
         dHand.push(card);
@@ -129,9 +135,9 @@ function double() {
 //
 // }
 function totalLogic() {
-    if (totalAces(pHand)>21) endRound();
-    else if (totalHand(pHand)===21 && pHand.length === 2) blackJack = true;
-    else if (totalAces(pHand)===21) endRound();
+    if (totalAces(pHands[handID].hand)>21) endRound();
+    else if (totalHand(pHands[handID].hand)===21 && pHands[handID].hand.length === 2) blackJack = true;
+    else if (totalAces(pHands[handID].hand)===21) endRound();
 }
 function cardToNum(card) {
     let num = 2+"23456789TJQKA".indexOf(card.at(0));
@@ -170,7 +176,8 @@ function startRound() {
     controls.appendChild(pControls);
     deleteAllChildren(dHandDis);
     deleteAllChildren(pHandDis);
-    clearArray(pHand);
+    deleteAllChildren(pHands[handID].display);
+    clearArray(pHands[handID].hand);
     clearArray(dHand);
     dealCard("player");
     dealCard("player");
@@ -192,7 +199,7 @@ function displayBet() {
 }
 function checkWin(blackJack) {
     let dTotal = totalAces(dHand);
-    let pTotal = totalAces(pHand);
+    let pTotal = totalAces(pHands[handID].hand);
     if (pTotal > 21) {
     }
     else if (dTotal > 21) {
@@ -220,6 +227,7 @@ displayBalance();
 bControls.remove();
 pControls.remove();
 generateDeck();
+new Hand();
 betRound();
 
 

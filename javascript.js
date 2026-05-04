@@ -160,6 +160,10 @@ function startRound() {
     deleteAllChildren(pHandDis);
     clearArray(pHand);
     clearArray(dHand);
+    if (deck.length < 30) {
+        clearArray(deck);
+        generateDeck();
+    }
     dealCard("player");
     dealCard("player");
     dealCard("Dealer");

@@ -179,6 +179,10 @@ function startRound() {
     deleteAllChildren(pHands[handID].display);
     clearArray(pHands[handID].hand);
     clearArray(dHand);
+    if (deck.length < 30) {
+        clearArray(deck);
+        generateDeck();
+    }
     dealCard("player");
     dealCard("player");
     dealCard("Dealer");

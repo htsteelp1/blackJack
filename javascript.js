@@ -134,11 +134,17 @@ function split() {
     new Hand();
     let card = pHands[handID].hand.pop();
     pHands[handID].display.removeChild(pHands[handID].display.lastChild);
+    hit();
     handID ++;
     let cardImage = document.createElement("img");
     cardImage.src = cardUrl(card);
-    pHands[handID].dealCard(card, cardImage)
+    pHands[handID].dealCard(card, cardImage);
     pHands[handID].displayHand();
+    hit();
+    balanceRef.value = balanceRef.value - Math.min(balanceRef.value, amountBet);
+    amountBet += Math.min(balanceRef.value, amountBet);
+    displayBet();
+    displayBalance();
 }
 function totalLogic() {
     if (totalAces(pHands[handID].hand)>21) endRound();
@@ -220,19 +226,19 @@ function checkWin(blackJack) {
     if (pTotal > 21) {
     }
     else if (dTotal > 21) {
-        balanceRef.value += 2*amountBet;
+        balanceRef.value += 2*amountBet/pHands.length;
         if (blackJack) balanceRef.value += amountBet*0.5;
     }
     else if (dTotal === pTotal) {
-        balanceRef.value += amountBet;
-        if (blackJack === true && dHand.length !== 2) balanceRef.value += Math.ceil(amountBet*1.5)
+        balanceRef.value += amountBet/pHands.length;
+        if (blackJack === true && dHand.length !== 2) balanceRef.value += Math.ceil(amountBet*1.5/pHands.length)
     }
     else if (dTotal > pTotal) {
     //     Insurance logic will go here
     }
     else if (pTotal > dTotal) {
-        balanceRef.value += 2*amountBet;
-        if (blackJack === true) balanceRef.value += Math.ceil(amountBet*0.5);
+        balanceRef.value += 2*amountBet/pHands.length;
+        if (blackJack === true) balanceRef.value += Math.ceil(amountBet*0.5/pHands.length);
     }
 }
 function clearArray(array) {

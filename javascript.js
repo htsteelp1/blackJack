@@ -143,7 +143,7 @@ function split() {
 function totalLogic() {
     if (totalAces(pHands[handID].hand)>21) endRound();
     else if (totalHand(pHands[handID].hand)===21 && pHands[handID].hand.length === 2) blackJack = true;
-    else if (totalAces(pHands[handID].hand)===21) endRound();
+    if (totalAces(pHands[handID].hand)===21) endRound();
 }
 function cardToNum(card) {
     let num = 2+"23456789TJQKA".indexOf(card.at(0));
@@ -198,6 +198,7 @@ function startRound() {
     dealCard("player");
     dealCard("player");
     dealCard("Dealer");
+    totalLogic();
 }
 function betRound() {
     controls.appendChild(bControls);

@@ -11,6 +11,7 @@ let amountBet = 0;
 let betDisplay = document.querySelector("#amountBet");
 let blackJack = false;
 let handID = 0;
+let splitButton = document.querySelector("#split");
 
 class Hand {
     hand = [];
@@ -190,6 +191,7 @@ function endRound() {
 function startRound() {
     bControls.remove();
     controls.appendChild(pControls);
+    splitButton.remove();
     deleteAllChildren(dHandDis);
     deleteAllChildren(pHandDis);
     handID = 0;
@@ -205,6 +207,7 @@ function startRound() {
     dealCard("player");
     dealCard("Dealer");
     totalLogic();
+    addSplitCheck();
 }
 function betRound() {
     controls.appendChild(bControls);
@@ -244,6 +247,11 @@ function checkWin(blackJack) {
 function clearArray(array) {
     array.length = 0;
     array.length = 0;
+}
+function addSplitCheck() {
+    if (cardToNum(pHands[handID].hand[0]) === cardToNum(pHands[handID].hand[1])) {
+        pControls.appendChild(splitButton);
+    }
 }
 balanceRef.value = balanceRef.value>0 ? balanceRef.value : 100
 displayBalance();

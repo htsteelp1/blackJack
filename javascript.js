@@ -132,7 +132,12 @@ function double() {
 }
 function split() {
     new Hand();
+    let card = pHands[handID].hand.pop();
+    pHands[handID].display.removeChild(pHands[handID].display.lastChild);
     handID ++;
+    let cardImage = document.createElement("img");
+    cardImage.src = cardUrl(card);
+    pHands[handID].dealCard(card, cardImage)
     pHands[handID].displayHand();
 }
 function totalLogic() {

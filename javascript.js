@@ -58,7 +58,6 @@ function dealCard(person) {
     cardImage.src = cardUrl(card);
     if (person === "player") {
         pHands[handID].dealCard(card, cardImage);
-        pHands[handID].displayHand();
     }
     else {
         dHand.push(card);
@@ -109,9 +108,9 @@ function clickHandler(event) {
         case "stand":
             stand();
             break;
-        // case "split":
-        //     split();
-        //     break;
+        case "split":
+            split();
+            break;
         case "abet":
             bet();
     }
@@ -131,9 +130,11 @@ function double() {
     amountBet += Math.min(balanceRef.value, amountBet);
     stand();
 }
-// function split() {
-//
-// }
+function split() {
+    new Hand();
+    handID ++;
+    pHands[handID].displayHand();
+}
 function totalLogic() {
     if (totalAces(pHands[handID].hand)>21) endRound();
     else if (totalHand(pHands[handID].hand)===21 && pHands[handID].hand.length === 2) blackJack = true;
@@ -159,11 +160,15 @@ function totalAces(hand) {
     return subtractAces(countAces(hand), totalHand(hand));
 }
 function endRound() {
+    handID--;
+    if (handID >= 0) return;
     while (totalAces(dHand) < 17) {
         dealCard("dealer");
     }
     pControls.remove();
-    checkWin(blackJack);
+    for (handID = 0; handID < pHands.length; handID++) {
+        checkWin(blackJack);
+    }
     displayBalance();
     amountBet = 0;
     displayBet();
@@ -176,9 +181,11 @@ function startRound() {
     controls.appendChild(pControls);
     deleteAllChildren(dHandDis);
     deleteAllChildren(pHandDis);
-    deleteAllChildren(pHands[handID].display);
-    clearArray(pHands[handID].hand);
+    handID = 0;
+    clearArray(pHands);
     clearArray(dHand);
+    new Hand();
+    pHands[handID].displayHand();
     if (deck.length < 30) {
         clearArray(deck);
         generateDeck();

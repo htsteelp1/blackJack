@@ -29,6 +29,9 @@ body {
 .cards img {
     height: 130px;
 }
+#player > .cards {
+    flex-direction: column;
+}
 .pControls button {
     background-color: green;
     border-radius: 4px;

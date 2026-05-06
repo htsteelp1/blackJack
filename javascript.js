@@ -1,10 +1,10 @@
 const deck = [];
 const pHand = [];
 const dHand = [];
-let dHandDis = document.querySelector("#dealer .cards")
-let pHandDis = document.querySelector("#player .cards")
+let dHandDis = document.querySelector("#dealer .cards");
+let pHandDis = document.querySelector("#player .cards");
 let controls = document.querySelector("#cConc");
-let bControls = document.querySelector(".bControls")
+let bControls = document.querySelector(".bControls");
 let pControls = document.querySelector(".pControls");
 let betInput = document.querySelector("#Bet");
 let amountBet = 0;

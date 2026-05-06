@@ -119,7 +119,7 @@ function double() {
 function totalLogic() {
     if (totalAces(pHand)>21) endRound();
     else if (totalHand(pHand)===21 && pHand.length === 2) blackJack = true;
-    else if (totalAces(pHand)===21) endRound();
+    if (totalAces(pHand)===21) endRound();
 }
 function cardToNum(card) {
     let num = 2+"23456789TJQKA".indexOf(card.at(0));
@@ -167,6 +167,7 @@ function startRound() {
     dealCard("player");
     dealCard("player");
     dealCard("Dealer");
+    totalLogic();
 }
 function betRound() {
     controls.appendChild(bControls);
